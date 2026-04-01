@@ -1,0 +1,93 @@
+main {
+  flex: 1;
+  width: 100%;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Global Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff9500, #ffb84d);
+  color: #1a1a1a;
+  padding: 12px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 20px rgba(255, 149, 0, 0.3);
+  transform: translateY(-3px);
+  color: #1a1a1a;
+}
+
+/* Responsive Typography */
+@media (max-width: 1024px) {
+  section {
+    padding: 60px 15px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 40px 15px !important;
+  }
+
+  h2 {
+    font-size: 1.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 30px 10px !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+}
