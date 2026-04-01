@@ -1,12 +1,11 @@
 .hero {
   background: rgba(26, 26, 26, 0.9);
-  border-radius: 30px;
-  padding: 4rem 3rem;
-  margin: 3rem auto;
+  padding: 6rem 3rem;
+  margin: 0;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   animation: slideUp 1s ease;
-  max-width: 1200px;
-  width: 95%;
+  width: 100%;
+  border-radius: 0 0 30px 30px;
 }
 
 @keyframes auroraSpin {
@@ -25,6 +24,8 @@
   align-items: center;
   gap: 4rem;
   text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .hero-image-side {
