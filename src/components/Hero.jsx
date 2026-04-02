@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Hero.css'
+import profileImg from '../assets/profile.jpg'
 import resumePdf from '../../Karthik_C_Resume (1).pdf'
 
 function Hero() {
@@ -23,7 +24,7 @@ function Hero() {
       <div className="hero-container">
         <div className="hero-image-side">
           <div className="profile-wrapper">
-            <img src="/img/profile.jpg" alt="Karthik C - Full Stack Developer" className="profile-pic" />
+            <img src={profileImg} alt="Karthik C - Full Stack Developer" className="profile-pic" />
           </div>
         </div>
         <div className="hero-text-side">
