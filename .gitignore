@@ -3,9 +3,7 @@ node_modules/
 /.pnp
 .pnp.js
 
-# Build outputs
-/dist
-/build
+# Build outputs (removed /dist and /build to allow tracking docs/ for GitHub Pages)
 
 # Environment variables
 .env
