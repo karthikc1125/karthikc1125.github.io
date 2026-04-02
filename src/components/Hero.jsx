@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Hero.css'
-import profileImg from '../assets/profile.jpg'
-import resumePdf from '../../Karthik_C_Resume (1).pdf'
+import './Hero.css'
 
 function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -24,7 +23,7 @@ function Hero() {
       <div className="hero-container">
         <div className="hero-image-side">
           <div className="profile-wrapper">
-            <img src={profileImg} alt="Karthik C - Full Stack Developer" className="profile-pic" />
+            <img src="/profile.jpg" alt="Karthik C - Full Stack Developer" className="profile-pic" />
           </div>
         </div>
         <div className="hero-text-side">
@@ -34,7 +33,7 @@ function Hero() {
           </div>
           <div className="hero-buttons">
             <a href="#contact" className="cta-button">Get In Touch</a>
-            <a href={resumePdf} download="Karthik_C_Resume.pdf" className="cta-button tertiary-btn">Download Resume</a>
+            <a href="/Karthik_C_Resume.pdf" download="Karthik_C_Resume.pdf" className="cta-button tertiary-btn">Download Resume</a>
           </div>
         </div>
       </div>
