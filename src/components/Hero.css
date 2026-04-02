@@ -51,44 +51,22 @@
   align-items: center;
 }
 
-/* THE DYNAMIC RAINBOW WORM BORDER */
+/* THE DYNAMIC RAINBOW WORM BORDER - Now strictly on the circumference */
 .profile-wrapper::before {
   content: '';
   position: absolute;
-  top: -8px; /* Slightly thicker */
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
+  inset: -10px;
   background: conic-gradient(
     from 0deg,
     #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF, #FF0000
   );
-  animation: auroraWorm 1.5s linear infinite, glowPulse 2s ease-in-out infinite alternate;
+  animation: auroraWorm 1.5s linear infinite;
   border-radius: 50%;
   z-index: -1;
-  box-shadow: 0 0 60px rgba(255, 255, 255, 0.7), 0 0 25px rgba(93, 173, 226, 0.9);
-  filter: brightness(2.5) contrast(1.6); /* Even brighter */
-}
-
-@keyframes glowPulse {
-  from { box-shadow: 0 0 40px rgba(155, 89, 182, 0.5), 0 0 100px rgba(93, 173, 226, 0.3); }
-  to { box-shadow: 0 0 80px rgba(155, 89, 182, 0.8), 0 0 140px rgba(93, 173, 226, 0.5); }
-}
-
-/* EXTRA GLOW DEPTH */
-.profile-wrapper::after {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  right: -12px;
-  bottom: -12px;
-  background: radial-gradient(circle, rgba(155, 89, 182, 0.5), transparent 70%);
-  border-radius: 50%;
-  z-index: -2;
-  filter: blur(40px) brightness(1.5);
-  opacity: 0.8;
-  animation: auroraSpin 10s linear infinite;
+  /* Use mask to keep the "worm" strictly as a ring on the circumference */
+  -webkit-mask: radial-gradient(circle, transparent 68%, black 70%);
+  mask: radial-gradient(circle, transparent 68%, black 70%);
+  filter: brightness(1.8) contrast(1.2);
 }
 
 .profile-pic {
@@ -195,6 +173,34 @@
   flex-wrap: wrap;
 }
 
+.hero-socials {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 2rem;
+}
+
+.hero-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 50%;
+  color: #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.hero-social-icon:hover {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: #FFD700;
+  color: #FFD700;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
 @media (max-width: 1024px) {
   .hero-container {
     flex-direction: column;
@@ -211,7 +217,7 @@
     height: 300px;
   }
 
-  .hero-buttons {
+  .hero-buttons, .hero-socials {
     justify-content: center;
   }
 

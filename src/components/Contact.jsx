@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { SiGooglecloud } from 'react-icons/si'
 import './Contact.css'
 import ScrollFloat from './ScrollFloat'
+import { gsap } from 'gsap'
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,25 @@ function Contact() {
     email: '',
     message: ''
   })
+  const [submitStatus, setSubmitStatus] = useState('idle')
+  const formRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".form-group", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".contact-form",
+          start: "top 85%",
+        }
+      });
+    }, formRef);
+    return () => ctx.revert();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -19,96 +39,99 @@ function Contact() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Create mailto link
-    const mailtoLink = `mailto:karthikc1125@gmail.com?subject=Contact from ${formData.name}&body=${formData.message}%0A%0AFrom: ${formData.email}`
-    window.location.href = mailtoLink
+    setSubmitStatus('submitting')
+    
+    const submissionData = new FormData()
+    submissionData.append("access_key", "8db86a25-37b6-4e49-855a-ac2316215f29")
+    submissionData.append("name", formData.name)
+    submissionData.append("email", formData.email)
+    submissionData.append("message", formData.message)
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submissionData
+      })
+
+      const data = await response.json()
+      
+      if (data.success) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+    }
   }
 
   return (
-    <section className="contact" id="contact">
+    <section className="contact" id="contact" ref={formRef}>
       <h2><ScrollFloat>Get in Touch</ScrollFloat></h2>
       <div className="contact-container">
         <form className="contact-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            rows="6"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-          <button type="submit" className="submit-btn">Send Message</button>
-        </form>
+          <div className="form-group">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              placeholder=" "
+            />
+            <label htmlFor="name">Your Name</label>
+            <div className="input-highlight"></div>
+          </div>
 
-        <div className="contact-info">
-          <h3>Let's Connect</h3>
-          <p>Feel free to reach out to me through any of these channels:</p>
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder=" "
+            />
+            <label htmlFor="email">Your Email</label>
+            <div className="input-highlight"></div>
+          </div>
+
+          <div className="form-group">
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              placeholder=" "
+            ></textarea>
+            <label htmlFor="message">Your Message</label>
+            <div className="input-highlight"></div>
+          </div>
           
-          <div className="contact-links">
-            <a 
-              href="https://github.com/karthikc1125" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="contact-link"
-            >
-              <FaGithub size={24} />
-              <span>GitHub</span>
-            </a>
-            
-            <a 
-              href="https://linkedin.com/in/karthik-c-58b524237/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="contact-link"
-            >
-              <FaLinkedin size={24} />
-              <span>LinkedIn</span>
-            </a>
-            
-            <a 
-              href="mailto:karthikc1125@gmail.com"
-              className="contact-link"
-            >
-              <FaEnvelope size={24} />
-              <span>Email</span>
-            </a>
-            
-            <a 
-              href="https://www.skills.google/public_profiles/896aebbf-6879-4991-8520-baf41523e4df" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="contact-link"
-            >
-              <SiGooglecloud size={24} />
-              <span>GCP Skills</span>
-            </a>
-          </div>
+          <button type="submit" className="submit-btn" disabled={submitStatus === 'submitting'}>
+            <span>{submitStatus === 'submitting' ? 'Sending...' : 'Send Message'}</span>
+            <div className="btn-glow"></div>
+          </button>
 
-          <div className="contact-email">
-            <p>Email me directly:</p>
-            <a href="mailto:karthikc1125@gmail.com" className="email-link">
-              karthikc1125@gmail.com
-            </a>
-          </div>
-        </div>
+          {submitStatus === 'success' && (
+            <div className="status-message success">
+              Message sent successfully! I'll get back to you soon.
+            </div>
+          )}
+          {submitStatus === 'error' && (
+            <div className="status-message error">
+              Oops! Something went wrong. Please try again or email me directly.
+            </div>
+          )}
+        </form>
       </div>
     </section>
   )

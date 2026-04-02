@@ -5,11 +5,39 @@
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
+  overflow: hidden;
+  /* Hide Pikachu when he runs off limits */
+}
+
+.pikachu-run {
+  position: absolute;
+  top: -5px;
+  width: 60px;
+  height: auto;
+  z-index: 101;
+  pointer-events: none;
+}
+
+.pikachu-run img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove CSS animation as GSAP is now controlling position */
+
+.nav-links a.glow-active {
+  color: #FFD700;
+  text-shadow: 0 0 15px #FFD700, 0 0 30px #FF8C00;
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
 .navbar {
   display: flex;
-  justify-content: center; /* Center the items */
+  justify-content: center;
+  /* Center the items */
   align-items: center;
   padding: 1.5rem;
   width: 100%;
@@ -36,13 +64,41 @@
 }
 
 /* Unique Hover Colors */
-.nav-links li:nth-child(1) a:hover { background: #FF6B6B; box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4); }
-.nav-links li:nth-child(2) a:hover { background: #4D96FF; box-shadow: 0 10px 20px rgba(77, 150, 255, 0.4); }
-.nav-links li:nth-child(3) a:hover { background: #6BCB77; box-shadow: 0 10px 20px rgba(107, 203, 119, 0.4); }
-.nav-links li:nth-child(4) a:hover { background: #FFD93D; box-shadow: 0 10px 20px rgba(255, 217, 61, 0.4); color: #333; }
-.nav-links li:nth-child(5) a:hover { background: #9B59B6; box-shadow: 0 10px 20px rgba(155, 89, 182, 0.4); }
-.nav-links li:nth-child(6) a:hover { background: #F94C66; box-shadow: 0 10px 20px rgba(249, 76, 102, 0.4); }
-.nav-links li:nth-child(7) a:hover { background: #00D7FF; box-shadow: 0 10px 20px rgba(0, 215, 255, 0.4); }
+.nav-links li:nth-child(1) a:hover {
+  background: #FF6B6B;
+  box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+}
+
+.nav-links li:nth-child(2) a:hover {
+  background: #4D96FF;
+  box-shadow: 0 10px 20px rgba(77, 150, 255, 0.4);
+}
+
+.nav-links li:nth-child(3) a:hover {
+  background: #6BCB77;
+  box-shadow: 0 10px 20px rgba(107, 203, 119, 0.4);
+}
+
+.nav-links li:nth-child(4) a:hover {
+  background: #FFD93D;
+  box-shadow: 0 10px 20px rgba(255, 217, 61, 0.4);
+  color: #333;
+}
+
+.nav-links li:nth-child(5) a:hover {
+  background: #9B59B6;
+  box-shadow: 0 10px 20px rgba(155, 89, 182, 0.4);
+}
+
+.nav-links li:nth-child(6) a:hover {
+  background: #F94C66;
+  box-shadow: 0 10px 20px rgba(249, 76, 102, 0.4);
+}
+
+.nav-links li:nth-child(7) a:hover {
+  background: #00D7FF;
+  box-shadow: 0 10px 20px rgba(0, 215, 255, 0.4);
+}
 
 .nav-links a:hover {
   color: white;

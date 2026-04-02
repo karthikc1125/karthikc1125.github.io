@@ -1,6 +1,7 @@
 import React from 'react'
 import './Education.css'
 import ScrollFloat from './ScrollFloat'
+import LightningLine from './LightningLine'
 
 function Education() {
   const education = [
@@ -34,19 +35,22 @@ function Education() {
     <section className="education" id="education">
       <h2><ScrollFloat>Education Journey</ScrollFloat></h2>
       <div className="education-timeline">
-        {education.map((item, index) => (
-          <div key={index} className="education-item">
-            <div className="timeline-marker">
-              <div className="timeline-dot"></div>
+        <LightningLine color="#FFD700" width={1.5} />
+        <div className="education-items">
+          {education.map((item, index) => (
+            <div key={index} className="education-item">
+              <div className="timeline-marker">
+                <div className="timeline-dot"></div>
+              </div>
+              <div className="education-content">
+                <span className="education-year">{item.year}</span>
+                <h3>{item.degree}</h3>
+                <p className="institution">{item.institution}</p>
+                <p className="details">{item.details}</p>
+              </div>
             </div>
-            <div className="education-content">
-              <span className="education-year">{item.year}</span>
-              <h3>{item.degree}</h3>
-              <p className="institution">{item.institution}</p>
-              <p className="details">{item.details}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )
