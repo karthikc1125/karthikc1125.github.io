@@ -1,5 +1,6 @@
 import React from 'react'
 import './Education.css'
+import ScrollFloat from './ScrollFloat'
 
 function Education() {
   const education = [
@@ -31,7 +32,7 @@ function Education() {
 
   return (
     <section className="education" id="education">
-      <h2>Education Journey</h2>
+      <h2><ScrollFloat>Education Journey</ScrollFloat></h2>
       <div className="education-timeline">
         {education.map((item, index) => (
           <div key={index} className="education-item">

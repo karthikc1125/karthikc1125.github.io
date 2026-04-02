@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './Achievements.css';
+import ScrollFloat from './ScrollFloat';
 
 const Achievements = () => {
   const achievements = [
@@ -95,7 +96,7 @@ const Achievements = () => {
 
   return (
     <section id="achievements" className="achievements">
-      <h2>Achievements & Honors</h2>
+      <h2><ScrollFloat>Achievements & Honors</ScrollFloat></h2>
       <div 
         className="carousel-container"
         onMouseEnter={() => setIsHovered(true)}

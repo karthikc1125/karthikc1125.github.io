@@ -1,9 +1,29 @@
-import React from 'react'
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from 'react-icons/fa'
+import React, { useState, useEffect } from 'react'
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp, FaUsers } from 'react-icons/fa'
 import { SiGooglecloud } from 'react-icons/si'
+import CountUp from './CountUp'
 import './Footer.css'
 
 function Footer() {
+  const [visitorCount, setVisitorCount] = useState(0);
+
+  useEffect(() => {
+    // Fetch real-time count starting from 0 using a free JSON counter API
+    const fetchRealCount = async () => {
+      try {
+        const response = await fetch('https://api.counterapi.dev/v1/karthikc1125/portfolio/up');
+        const data = await response.json();
+        if (data && data.count) {
+          setVisitorCount(data.count);
+        }
+      } catch (error) {
+        console.error("Error fetching live visitor count:", error);
+      }
+    };
+
+    fetchRealCount();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -68,6 +88,19 @@ function Footer() {
 
       <div className="footer-bottom">
         <p>&copy; 2024 Karthik C. All rights reserved.</p>
+        
+        <div className="visitor-count-container">
+          <FaUsers className="visitor-icon" />
+          <span>Profile Visitors:</span>
+          {visitorCount > 0 && (
+            <CountUp 
+              to={visitorCount} 
+              duration={3} 
+              className="count-up-text"
+            />
+          )}
+        </div>
+
         <button className="scroll-to-top" onClick={scrollToTop} title="Back to top">
           <FaArrowUp size={16} />
         </button>

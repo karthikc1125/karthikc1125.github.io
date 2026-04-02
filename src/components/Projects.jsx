@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import './Projects.css'
+import ScrollFloat from './ScrollFloat'
 
 function Projects() {
   const projects = [
@@ -82,7 +83,7 @@ function Projects() {
 
   return (
     <section className="projects" id="projects">
-      <h2>Featured Projects</h2>
+      <h2><ScrollFloat>Featured Projects</ScrollFloat></h2>
       <div 
         className="carousel-container"
         onMouseEnter={() => setIsHovered(true)}

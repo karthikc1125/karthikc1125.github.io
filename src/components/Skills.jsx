@@ -6,6 +6,7 @@ import {
   SiMongodb, SiExpress, SiTensorflow, SiGooglecloud, SiMysql, SiSpringboot, SiHuggingface, SiMermaid
 } from 'react-icons/si'
 import './Skills.css'
+import ScrollFloat from './ScrollFloat'
 
 function Skills() {
   const carouselRef = useRef(null);
@@ -96,7 +97,7 @@ function Skills() {
 
   return (
     <section className="skills" id="skills">
-      <h2>Technical Skills</h2>
+      <h2><ScrollFloat>Technical Skills</ScrollFloat></h2>
       <div className="carousel-container">
         <button className="carousel-btn left" onClick={() => scroll(-1)}><FaChevronLeft /></button>
         <div 

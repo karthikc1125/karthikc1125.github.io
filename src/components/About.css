@@ -1,7 +1,7 @@
 .about {
   padding: 80px 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 100px auto 0 auto; /* Added 100px top margin to separate from Hero */
   color: #f0f0f0;
   background: rgba(26, 26, 26, 0.9);
   border-radius: 20px;
@@ -123,6 +123,7 @@
 @media (max-width: 768px) {
   .about {
     padding: 60px 15px;
+    margin-top: 50px;
   }
 
   .about h2 {

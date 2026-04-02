@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { SiGooglecloud } from 'react-icons/si'
 import './Contact.css'
+import ScrollFloat from './ScrollFloat'
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ function Contact() {
 
   return (
     <section className="contact" id="contact">
-      <h2>Get in Touch</h2>
+      <h2><ScrollFloat>Get in Touch</ScrollFloat></h2>
       <div className="contact-container">
         <form className="contact-form" onSubmit={handleSubmit}>
           <input

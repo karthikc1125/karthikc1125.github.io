@@ -1,10 +1,11 @@
 import React from 'react'
 import './About.css'
+import ScrollFloat from './ScrollFloat'
 
 function About() {
   return (
     <section className="about" id="about">
-      <h2>About Me</h2>
+      <h2><ScrollFloat>About Me</ScrollFloat></h2>
       <div className="professional-roles">
         <span className="role-badge">Intern @ Nano Stream Technologies</span>
         

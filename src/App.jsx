@@ -8,11 +8,15 @@ import Education from './components/Education'
 import Achievements from './components/Achievements'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ClickSpark from './components/ClickSpark'
+import SplashCursor from './components/SplashCursor'
 import './App.css'
 
 function App() {
   return (
     <>
+      <ClickSpark />
+      <SplashCursor size={30} />
       <Header />
       <main className="main-content">
         <Hero />
